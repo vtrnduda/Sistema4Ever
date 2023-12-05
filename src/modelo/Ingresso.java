@@ -1,5 +1,6 @@
 package modelo;
 
+
 public class Ingresso {
 	private String codigo;
 	private String telefone;
