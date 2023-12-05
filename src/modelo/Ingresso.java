@@ -13,9 +13,31 @@ public class Ingresso {
 		this.evento = evento;
 		this.participante = participante;
 	}
-	public double calcularPreco() {
-		return 0;
-		//todo
+
+	public String getCodigo(){
+		return this.codigo;
 	}
+
+	public String getTelefone(){
+		return this.telefone;
+	}
+	
+	public double calcularPreco() {
+    	double preco = evento.getPreco();
+    	int idade = participante.calcularIdade();
+
+    	if (idade < 18) {
+        	preco *= 0.9;
+    	} else if (idade >= 60) {
+        	preco *= 0.8;
+    	}
+
+    	if (participante instanceof Convidado) {
+        	preco *= 0.5;
+    	}
+		
+    	return preco;
+	}
+
 		
 }

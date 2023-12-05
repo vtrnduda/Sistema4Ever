@@ -34,7 +34,7 @@ public class Repositorio {
 	
 	public Participante localizarParticipante (String cpf) {
 		for (Participante p : participantes) {
-			if (p.getCPF(cpf) == cpf) {
+			if (p.getCpf() == cpf) {
 				return p;			
 			}
 		}
@@ -49,9 +49,11 @@ public class Repositorio {
 		}
 		return null;
 	}
+
+	public ArrayList<Ingresso> getIngressos(){
+		return this.ingressos;
+	}
 	
-
-
 	public void carregarObjetos()  	{
 		// carregar para o repositorio os objetos salvos nos arquivos csv
 		try {

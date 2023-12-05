@@ -32,10 +32,33 @@ public class Evento {
 		return this.descricao;
 	}
 
+	public int getCapacidade(){
+		return this.capacidade;
+	}
+
+	public double getPreco(){
+		return this.preco;
+	}
 
 	public void adicionar(Ingresso ingresso) {
-		// TODO Auto-generated method stub
-		
+		ingressos.add(ingresso);
+	}
+
+	public boolean lotado(){
+		return ingressos.size() >= capacidade;
+	}
+
+	public int quantidadeIngressos(){
+		return ingressos.size();
+	}
+
+	public double totalArrecadado(){
+		double total = 0;
+		for (Ingresso i : ingressos){
+			total += i.calcularPreco();
+		}
+
+		return total;
 	}
 	
 	
