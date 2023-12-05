@@ -11,22 +11,20 @@ import repositorio.Repositorio;
 public class Fachada {
 	
 	private static Repositorio repositorio = new Repositorio();
+	private static int idEvento = 1;
 	private Fachada() {};
 
 	public static void criarEvento(String data, String descricao, int capacidade, double preco){
 
-		Random random = new Random();
-		int id;
+		while(true){
+			idEvento++;
 
-		while(true) {
-			id = random.nextInt(100000);
-
-			if (repositorio.localizarEvento(id) == null) {
+			if (repositorio.localizarEvento(idEvento) == null) {
 				break;
 			}
-		} 
+		}
 		
-		Evento evento = new Evento(int id, String data, String descricao, int capacidade, double preco);
+		Evento evento = new Evento(idEvento, data, descricao, capacidade, preco);
 
 		repositorio.adicionar(evento);
 		repositorio.salvarObjetos();
