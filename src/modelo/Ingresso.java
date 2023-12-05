@@ -22,6 +22,10 @@ public class Ingresso {
 	public String getTelefone(){
 		return this.telefone;
 	}
+
+	// public void setEvento(Evento evento){
+	// 	this.evento = evento;
+	// }
 	
 	public double calcularPreco() {
     	double preco = evento.getPreco();

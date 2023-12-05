@@ -25,8 +25,8 @@ public class Participante {
 		}
 
 		public void adicionar(Ingresso ingresso) {
-			// TODO Auto-generated method stub
 			ingressos.add(ingresso);
+			
 			
 		}
 
