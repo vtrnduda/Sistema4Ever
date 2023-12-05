@@ -1,7 +1,5 @@
 package regras_negocio;
 
-import java.util.Random;
-
 import modelo.Convidado;
 import modelo.Evento;
 import modelo.Ingresso;
