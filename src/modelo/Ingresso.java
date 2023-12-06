@@ -23,8 +23,16 @@ public class Ingresso {
 		return this.telefone;
 	}
 
+	public Evento getEvento(){
+		return this.evento;
+	}
+	
+	public Participante getParticipante() {
+		return this.participante;
+	}
+
 	// public void setEvento(Evento evento){
-	// 	this.evento = evento;
+	//  	this.evento = evento;
 	// }
 	
 	public double calcularPreco() {

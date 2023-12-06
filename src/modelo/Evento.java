@@ -8,7 +8,7 @@ public class Evento {
 	private String descricao;
 	private int capacidade;
 	private double preco;
-	private boolean lotado;
+	//private boolean lotado;
 	private ArrayList<Ingresso> ingressos = new ArrayList<Ingresso>();
 	
 	
@@ -42,6 +42,10 @@ public class Evento {
 
 	public void adicionar(Ingresso ingresso) {
 		ingressos.add(ingresso);
+	}
+	
+	public void remover(Ingresso ingresso){
+			ingressos.remove(ingresso);
 	}
 
 	public boolean lotado(){

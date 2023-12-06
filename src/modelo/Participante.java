@@ -24,10 +24,16 @@ public class Participante {
 			return this.nascimento;
 		}
 
+		public ArrayList<Ingresso> getIngressos() {
+			return ingressos;
+		}
+
 		public void adicionar(Ingresso ingresso) {
 			ingressos.add(ingresso);
-			
-			
+		}
+
+		public void remover(Ingresso ingresso){
+			ingressos.remove(ingresso);
 		}
 
 		public int calcularIdade(){

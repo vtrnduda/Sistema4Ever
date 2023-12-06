@@ -31,11 +31,33 @@ public class Repositorio {
 	public void adicionar (Ingresso i) {
 		ingressos.add(i);
 	}
+
+	public void remover (Evento e){
+		eventos.remove(e);
+	}
+
+	public void remover (Participante p){
+		participantes.remove(p);
+	}
+
+	public void remover (Ingresso i){
+		ingressos.remove(i);
+	}
 	
 	public Participante localizarParticipante (String cpf) {
 		for (Participante p : participantes) {
 			if (p.getCpf() == cpf) {
 				return p;			
+			}
+		}
+		return null;
+	}
+
+	public Ingresso localizarIngresso(String codigo) {
+		
+		for (Ingresso i : ingressos){
+			if(i.getCodigo() == codigo){
+				return i;
 			}
 		}
 		return null;
@@ -49,9 +71,16 @@ public class Repositorio {
 		}
 		return null;
 	}
-
 	public ArrayList<Ingresso> getIngressos(){
-		return this.ingressos;
+		return ingressos;
+	}
+
+	public ArrayList<Evento> getEventos(){
+		return eventos;
+	}
+	
+	public ArrayList<Participante> getParticipantes(){
+		return participantes;
 	}
 	
 	public void carregarObjetos()  	{
@@ -132,8 +161,6 @@ public class Repositorio {
 			String codigo, telefone,cpf;
 			int id;
 			Ingresso ingresso;
-			Evento evento;
-			Participante participante;
 			File f = new File( new File(".\\ingressos.csv").getCanonicalPath())  ;
 			Scanner arquivo3 = new Scanner(f);	 //  pasta do projeto
 			while(arquivo3.hasNextLine()) 	{
@@ -179,8 +206,8 @@ public class Repositorio {
 			File f = new File( new File(".\\participantes.csv").getCanonicalPath())  ;
 			FileWriter arquivo2 = new FileWriter(f) ; 
 			for(Participante p : participantes) {
-				if(p instanceof Convidado c )
-					arquivo2.write(p.getCpf() +";" + p.getNascimento() +";" + c.getEmpresa()+"\n");	
+				if(p instanceof Convidado )
+					arquivo2.write(((Convidado)p).getCpf() + ";" + ((Convidado)p).getNascimento() +  ";" + ((Convidado)p).getEmpresa()+ "\n");	
 				else
 					arquivo2.write(p.getCpf() +";" + p.getNascimento() +"\n");	
 

@@ -1,5 +1,10 @@
 package regras_negocio;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+
 import modelo.Convidado;
 import modelo.Evento;
 import modelo.Ingresso;
@@ -20,6 +25,10 @@ public class Fachada {
 
 		if (data == null || data.isEmpty() || descricao == null || descricao.isEmpty()){
 			throw new Exception("Não é possível criar evento sem data ou descrição.");
+		}
+		
+		if (capacidade < 2){
+			throw new Exception("A capacidade do evento deve ser de no mínimo 2");
 		}
 
 		while(true){
@@ -57,8 +66,17 @@ public class Fachada {
 	public static void criarIngresso(int idEvento, String cpf, String telefone) throws Exception {
 		Evento evento = repositorio.localizarEvento(idEvento);
 
+
 		if (evento == null){
 			throw new Exception("Este evento não existe!");
+		}
+
+		if(telefone == null){
+			throw new Exception("Telefone não pode ser nulo.");
+		}
+
+		if(evento.quantidadeIngressos() >= evento.getCapacidade()){
+			throw new Exception("Este evento está lotado. Não é possível criar ingresso.");
 		}
 
 		Participante participante = repositorio.localizarParticipante(cpf);
@@ -67,13 +85,94 @@ public class Fachada {
 			throw new Exception("Este participante não existe!");
 		}
 
-		//Ingresso ingresso = new Ingresso(cpf, telefone, evento, participante);
+		String codigo = idEvento + "-" + cpf;
+		Ingresso ingresso = new Ingresso(codigo, telefone, evento, participante);
 
-
-
-
+		//ingresso.setEvento(evento);
+		repositorio.adicionar(ingresso);
+		repositorio.salvarObjetos();
 
 	}
+
+	public static void apagarEvento(int idEvento) throws Exception {
+		if(repositorio.localizarEvento(idEvento) == null){
+			throw new Exception("Este evento não existe!");
+		}
+		Evento e = repositorio.localizarEvento(idEvento);
+		if(e.quantidadeIngressos() > 0 ){
+			throw new Exception("Este evento não pode ser apagado, pois ainda possui ingressos!");
+		}
+
+		repositorio.remover(e);
+		repositorio.salvarObjetos();
+	}
+
+
+	public static void apagarParticipante(String cpf) throws Exception{
+		
+		if (repositorio.localizarParticipante(cpf) == null){
+			throw new Exception("Este participante não existe!");
+		}
+		Participante participante = repositorio.localizarParticipante(cpf);
+
+		ArrayList<Ingresso> listaIngressos = participante.getIngressos();
+
+		// Ingresso ultimoIngresso = listaIngressos.size() -1;
+		for(Ingresso i : listaIngressos){
+			LocalDate data_evento = LocalDate.parse(i.getEvento().getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+			LocalDate data_atual = LocalDate.now();
+			if(data_evento.isAfter(data_atual)){
+				throw new Exception("O participante não pode ser apagado, pois ainda possui ingresso válido.");
+			}	
+		}
+
+		//Um participante só pode ser apagado caso o seu último ingresso esteja ultrapassado e, neste caso,todos os seus ingressos devem ser apagados.
+		
+		for (Ingresso i : listaIngressos){
+			repositorio.remover(i);
+		}
+
+		repositorio.remover(participante);
+		repositorio.salvarObjetos();
+	}
+	
+	public static void apagarIngresso(String codigo) throws Exception {
+		if (repositorio.localizarIngresso(codigo)== null) {
+			throw new Exception("Este ingresso não existe");
+		}
+		int idEvento = Integer.parseInt(codigo.split("-")[0]);
+		String cpf = codigo.split("-")[1];
+
+		Participante participante = repositorio.localizarParticipante(cpf);
+		Ingresso ingresso = repositorio.localizarIngresso(codigo);
+		Evento evento = repositorio.localizarEvento(idEvento);
+
+		participante.remover(ingresso);
+		evento.remover(ingresso);
+
+		repositorio.remover(ingresso);
+		repositorio.salvarObjetos();
+
+		
+	}
+
+	//public static ArrayList<Evento> listarEventos() - retornar todos os eventos do repositório
+	
+	public static ArrayList<Evento> listarEventos(){
+		return repositorio.getEventos();
+	}
+
+	public static ArrayList<Ingresso> listarIngressos(){
+		return repositorio.getIngressos();
+	}
+
+	public static ArrayList<Participante> listarParticipantes(){
+		return repositorio.getParticipantes();
+	}
+
+	
+	
+
 
 
 }
