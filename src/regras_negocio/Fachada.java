@@ -109,31 +109,36 @@ public class Fachada {
 
 
 	public static void apagarParticipante(String cpf) throws Exception{
+		boolean ingressoValido = false;
 		
 		if (repositorio.localizarParticipante(cpf) == null){
 			throw new Exception("Este participante não existe!");
 		}
+		
 		Participante participante = repositorio.localizarParticipante(cpf);
-
 		ArrayList<Ingresso> listaIngressos = participante.getIngressos();
-
-		// Ingresso ultimoIngresso = listaIngressos.size() -1;
-		for(Ingresso i : listaIngressos){
+	
+		for(Ingresso i : listaIngressos) {
 			LocalDate data_evento = LocalDate.parse(i.getEvento().getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 			LocalDate data_atual = LocalDate.now();
+			
 			if(data_evento.isAfter(data_atual)){
-				throw new Exception("O participante não pode ser apagado, pois ainda possui ingresso válido.");
+				ingressoValido = true;
+				break;
 			}	
 		}
 
-		//Um participante só pode ser apagado caso o seu último ingresso esteja ultrapassado e, neste caso,todos os seus ingressos devem ser apagados.
-		
-		for (Ingresso i : listaIngressos){
-			repositorio.remover(i);
+		if (ingressoValido) {
+			throw new Exception("O participante não pode ser apagado, pois ainda possui ingresso válido.");
+		} else {
+			for (Ingresso i : listaIngressos){
+				repositorio.remover(i);
+			}
 		}
 
 		repositorio.remover(participante);
 		repositorio.salvarObjetos();
+		
 	}
 	
 	public static void apagarIngresso(String codigo) throws Exception {

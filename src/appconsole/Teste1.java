@@ -114,5 +114,3 @@ public class Teste1 {
 		new Teste1();
 	}
 }
-
-
