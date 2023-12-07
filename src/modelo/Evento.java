@@ -8,7 +8,6 @@ public class Evento {
 	private String descricao;
 	private int capacidade;
 	private double preco;
-	//private boolean lotado;
 	private ArrayList<Ingresso> ingressos = new ArrayList<Ingresso>();
 	
 	

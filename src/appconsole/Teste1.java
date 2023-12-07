@@ -26,7 +26,8 @@ public class Teste1 {
 			Fachada.criarConvidado("7777", "01/01/2010", "empresa3");
 			System.out.println("---------listagem de participantes e convidados -----");
 			for(Participante p : Fachada.listarParticipantes()) 
-				System.out.println(p);
+				System.out.println(
+						"cpf="+p.getCpf()+ ", Idade=" + p.calcularIdade()+ ", Ingressos="+ p.getIngressos());
 
 		} catch (Exception e) {
 			System.out.println("--->"+e.getMessage());
@@ -39,7 +40,11 @@ public class Teste1 {
 			Fachada.criarEvento("01/01/2024","fake",2,0.0);
 			System.out.println("---------listagem de eventos");
 			for(Evento e : Fachada.listarEventos()) 
-				System.out.println(e);
+				System.out.println(
+						"Id="+e.getId()+ ", Data= "+ e.getData() + ", Descricao=" +	e.getDescricao() + 
+						", capacidade=" + e.getCapacidade() + ", preco=" + e.getPreco() + 
+						", Quant. Ingressos=" + e.quantidadeIngressos());
+
 
 		} catch (Exception e) {
 			System.out.println("--->"+e.getMessage());
