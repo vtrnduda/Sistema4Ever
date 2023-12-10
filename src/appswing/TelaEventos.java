@@ -3,10 +3,13 @@ package appswing;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
 
 public class TelaEventos {
 
 	private JFrame frame;
+	private JLabel label;
 
 	/**
 	 * Launch the application.
@@ -38,6 +41,11 @@ public class TelaEventos {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		label = new JLabel("TELA DE EVENTOS");
+		label.setBounds(124, 104, 114, 32);
+		frame.getContentPane().add(label);
 	}
 
 }

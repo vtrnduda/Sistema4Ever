@@ -2,6 +2,8 @@ package appswing;
 
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JToolBar;
@@ -63,12 +65,21 @@ public class TelaPrincipal {
 		frame.getContentPane().add(menuBar);
 		
 		menuEventos = new JMenu("Eventos");
+		menuEventos.setForeground(new Color(255, 255, 255));
+		menuEventos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaEventos tela = new TelaEventos();
+			}
+		});
 		menuBar.add(menuEventos);
 		
 		menuParticipantes = new JMenu("Participantes");
+		menuParticipantes.setForeground(new Color(255, 255, 255));
 		menuBar.add(menuParticipantes);
 		
 		menuIngressos = new JMenu("Ingressos");
+		menuIngressos.setForeground(new Color(255, 255, 255));
 		menuBar.add(menuIngressos);
 		
 		label = new JLabel("New label");
