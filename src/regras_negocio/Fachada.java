@@ -48,7 +48,11 @@ public class Fachada {
 
 	public static void criarParticipante(String cpf, String nascimento) throws Exception{
 		if(repositorio.localizarParticipante(cpf) != null){
-			throw new Exception("Este CPF já foi cadastrado");
+			throw new Exception("Este CPF já foi cadastrado.");
+		}
+
+		if(nascimento.isEmpty() || nascimento == null){
+			throw new Exception("Não é possível criar participante sem data de nascimento.");
 		}
 
 		Participante participante = new Participante(cpf, nascimento);
@@ -60,24 +64,31 @@ public class Fachada {
 		if(repositorio.localizarParticipante(cpf) != null){
 			throw new Exception("Este CPF já foi cadastrado");
 		}
-
-		if (empresa != null){
+		if(empresa.isEmpty() || empresa == null){
+			throw new Exception("A empresa não pode estar vazia");
+		}
+		
 			Convidado convidado = new Convidado(cpf, nascimento, empresa);
 
 			repositorio.adicionar(convidado);
 			repositorio.salvarObjetos();
-		}
+		
 	}
 
 	public static void criarIngresso(int idEvento, String cpf, String telefone) throws Exception {
+		
+		String codigo = idEvento + "-" + cpf;
 		Evento evento = repositorio.localizarEvento(idEvento);
-
+		
+		if (repositorio.localizarIngresso(codigo) != null){
+			throw new Exception("Este ingresso já foi criado");
+		}
 
 		if (evento == null){
 			throw new Exception("Este evento não existe!");
 		}
 
-		if(telefone == null){
+		if(telefone.isEmpty() || telefone == null){
 			throw new Exception("Telefone não pode ser nulo.");
 		}
 
@@ -91,7 +102,7 @@ public class Fachada {
 			throw new Exception("Este participante não existe!");
 		}
 
-		String codigo = idEvento + "-" + cpf;
+		
 		Ingresso ingresso = new Ingresso(codigo, telefone, evento, participante);
 		evento.adicionar(ingresso);
 		participante.adicionar(ingresso);
