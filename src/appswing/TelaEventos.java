@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 
 import modelo.Evento;
 import regras_negocio.Fachada;
+import javax.swing.JFormattedTextField;
 
 
 public class TelaEventos {
@@ -45,6 +46,11 @@ public class TelaEventos {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
+	private JLabel label_5;
+	private JFormattedTextField formattedTextField;
+	private JFormattedTextField formattedTextField_1;
+	private JFormattedTextField formattedTextField_2;
+	private JFormattedTextField formattedTextField_3;
 
 	/**
 	 * Launch the application.
@@ -168,7 +174,7 @@ public class TelaEventos {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button.setBounds(181, 206, 160, 23);
+		button.setBounds(26, 343, 202, 23);
 		frame.getContentPane().add(button);
 
 		button_2 = new JButton("Voltar");
@@ -224,17 +230,41 @@ public class TelaEventos {
 		label.setBounds(195, 194, 332, 14);
 		frame.getContentPane().add(label);
 		
-		label_1 = new JLabel("Data");
-		label_1.setBounds(10, 215, 46, 14);
+		label_1 = new JLabel("Data:");
+		label_1.setBounds(26, 216, 46, 14);
 		frame.getContentPane().add(label_1);
 		
-		label_2 = new JLabel("Descrição");
-		label_2.setBounds(0, 257, 46, 14);
+		label_2 = new JLabel("Descrição:");
+		label_2.setBounds(149, 216, 63, 14);
 		frame.getContentPane().add(label_2);
 		
-		label_3 = new JLabel("Capacidade");
-		label_3.setBounds(10, 293, 69, 14);
+		label_3 = new JLabel("Capacidade:");
+		label_3.setBounds(26, 275, 69, 14);
 		frame.getContentPane().add(label_3);
+		
+		label_5 = new JLabel("Preço:");
+		label_5.setBounds(147, 275, 46, 14);
+		frame.getContentPane().add(label_5);
+		
+		formattedTextField = new JFormattedTextField();
+		formattedTextField.setToolTipText("dd/mm/yy");
+		formattedTextField.setBounds(26, 241, 79, 20);
+		frame.getContentPane().add(formattedTextField);
+		
+		formattedTextField_1 = new JFormattedTextField();
+		formattedTextField_1.setToolTipText("dd/mm/yy");
+		formattedTextField_1.setBounds(149, 241, 79, 20);
+		frame.getContentPane().add(formattedTextField_1);
+		
+		formattedTextField_2 = new JFormattedTextField();
+		formattedTextField_2.setToolTipText("dd/mm/yy");
+		formattedTextField_2.setBounds(26, 300, 79, 20);
+		frame.getContentPane().add(formattedTextField_2);
+		
+		formattedTextField_3 = new JFormattedTextField();
+		formattedTextField_3.setToolTipText("dd/mm/yy");
+		formattedTextField_3.setBounds(149, 300, 79, 20);
+		frame.getContentPane().add(formattedTextField_3);
 
 
 
