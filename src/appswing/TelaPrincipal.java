@@ -64,20 +64,7 @@ public class TelaPrincipal {
 	private void initialize() {
 		frame = new JFrame();
 		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowOpened(WindowEvent arg0) {
-				try{
-					//criar objetos no repositorio
-					Fachada.criarEvento("01/02/2024", "Evento festa", 15, 7.0);
-					Fachada.criarEvento("01/02/2024", "Evento festa", 15, 7.0);
-					Fachada.criarEvento("01/02/2024", "Evento festa", 15, 7.0);
-					Fachada.criarEvento("01/02/2024", "Evento festa", 15, 7.0);
-				}
-				catch(Exception e){
-					System.out.println("-->" + e.getMessage());
-				}
-
-			}
+			
 			@Override
 			public void windowClosing(WindowEvent e) {
 				//JOptionPane.showMessageDialog(frame, "at� breve !");
@@ -102,7 +89,7 @@ public class TelaPrincipal {
 		menuEventos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				TelaEventos tela = new TelaEventos();
+				TelaEventos telaEventos = new TelaEventos();
 			}
 		});
 		
@@ -110,10 +97,23 @@ public class TelaPrincipal {
 		
 		menuParticipantes = new JMenu("Participantes");
 		menuParticipantes.setForeground(new Color(255, 255, 255));
+		menuParticipantes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaParticipantes telaParticipantes = new TelaParticipantes();
+			}
+		});
+		
 		menuBar.add(menuParticipantes);
 		
 		menuIngressos = new JMenu("Ingressos");
 		menuIngressos.setForeground(new Color(255, 255, 255));
+		menuIngressos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				TelaIngressos telaIngressos = new TelaIngressos();
+			}
+		});
 		menuBar.add(menuIngressos);
 		
 		label = new JLabel("New label");
