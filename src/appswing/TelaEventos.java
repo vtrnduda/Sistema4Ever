@@ -29,6 +29,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Evento;
+import modelo.Ingresso;
 import regras_negocio.Fachada;
 import javax.swing.JFormattedTextField;
 import javax.swing.UIManager;
@@ -38,10 +39,10 @@ public class TelaEventos {
 	private JFrame frame;
 	private JTable table;
 	private JScrollPane scrollPane;
-	private JButton button_1;
+	private JButton btnApagarEvento;
 	private JLabel label_4;
-	private JButton button;
-	private JButton button_2;
+	private JButton btnCriarEvento;
+	private JButton btnVoltar;
 	private JButton btnExibirIngressos;
 	private JLabel label;
 	private JLabel label_1;
@@ -122,27 +123,22 @@ public class TelaEventos {
 		table.setShowGrid(true);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
-		button_1 = new JButton("Apagar Evento");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_1.addActionListener(new ActionListener() {
+		// APAGAR EVENTO
+		btnApagarEvento = new JButton("Apagar Evento");
+		btnApagarEvento.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnApagarEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (table.getSelectedRow() >= 0){
 						
 						int idEvento =  (int) table.getValueAt( table.getSelectedRow(), 0);
-						
-						
-						
-						//confirma��o
-						
-						
-						
+						// Confirmação
 						Object[] options = { "Confirmar", "Cancelar" };
-						int escolha = JOptionPane.showOptionDialog(null, "Confirma exclus�o "+ idEvento, "Alerta",
+						int escolha = JOptionPane.showOptionDialog(null, "Confirma exclusão "+ idEvento, "Alerta",
 								JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
 						if(escolha == 0) {
 							Fachada.apagarEvento(idEvento);
-							label.setText("exclus�o realizada");
+							label.setText("exclusão realizada");
 							listagem();
 						}
 					}
@@ -154,15 +150,16 @@ public class TelaEventos {
 				}
 			}
 		});
-		button_1.setBounds(389, 243, 160, 23);
-		frame.getContentPane().add(button_1);
+		btnApagarEvento.setBounds(389, 243, 160, 23);
+		frame.getContentPane().add(btnApagarEvento);
 
 		label_4 = new JLabel("selecione uma linha");
 		label_4.setBounds(26, 181, 315, 14);
 		frame.getContentPane().add(label_4);
 
-		button = new JButton("Criar Evento");
-		button.addActionListener(new ActionListener() {
+		// CRIAR EVENTO
+		btnCriarEvento = new JButton("Criar Evento");
+		btnCriarEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					
@@ -181,45 +178,49 @@ public class TelaEventos {
 				}
 			}
 		});
-		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button.setBounds(26, 336, 303, 29);
-		frame.getContentPane().add(button);
+		btnCriarEvento.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnCriarEvento.setBounds(26, 336, 303, 29);
+		frame.getContentPane().add(btnCriarEvento);
 
-		button_2 = new JButton("Voltar");
-		button_2.setForeground(UIManager.getColor("Button.select"));
-		button_2.addActionListener(new ActionListener() {
+		// VOLTAR
+		btnVoltar = new JButton("Voltar");
+		btnVoltar.setForeground(UIManager.getColor("Button.select"));
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					if (table.getSelectedRow() >= 0){
-						String nome = (String) table.getValueAt( table.getSelectedRow(), 0);
-						//Fachada.cancelarMatriculaAlunoTurma(nome);
-						label.setText("cancelou matricula " + nome);
-						listagem();
-					}
-					else
-						label.setText("selecione uma linha");
-				}
-				catch(Exception erro) {
-					label.setText(erro.getMessage());
-				}
+				frame.dispose();
 
 			}
 		});
-		button_2.setToolTipText("");
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_2.setBounds(389, 343, 160, 23);
-		frame.getContentPane().add(button_2);
+		btnVoltar.setToolTipText("");
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVoltar.setBounds(389, 343, 160, 23);
+		frame.getContentPane().add(btnVoltar);
 
+		// EXIBIR INGRESSOS
 		btnExibirIngressos = new JButton("Exibir Ingressos");
 		btnExibirIngressos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (table.getSelectedRow() >= 0){
-						String nome = (String) table.getValueAt( table.getSelectedRow(), 0);
-						String id = JOptionPane.showInputDialog("id da turma");
-						//Fachada.matricularAluno(nome, Integer.parseInt(id));
-						label.setText("matriculou " + id);
-						listagem();
+						int idEvento = (int) table.getValueAt( table.getSelectedRow(), 0);
+						
+						List<Evento> eventos = Fachada.listarEventos();
+						List<Ingresso> ingressos = null;
+						for(Evento evento : eventos) {
+							if(evento.getId() == idEvento) {
+								ingressos = evento.getIngressos();
+							}
+						}
+						
+						String titulo = "Ingressos do ID: " + String.valueOf(idEvento);
+						String listagemIngressos = "";
+						if(ingressos.size() > 0) 
+							for(Ingresso i : ingressos) 
+								listagemIngressos += i.getCodigo() + " - " + i.getTelefone() + "\n";
+						 else 
+							listagemIngressos = "Este evento não possui ingressos cadastrados";
+						JOptionPane.showMessageDialog(null, listagemIngressos, titulo, JOptionPane.INFORMATION_MESSAGE);
+						
 					}
 					else
 						label.setText("selecione uma linha");
@@ -266,7 +267,7 @@ public class TelaEventos {
 		frame.getContentPane().add(formattedTextField_1);
 		
 		formattedTextField_2 = new JFormattedTextField();
-		formattedTextField_2.setToolTipText("dd/mm/yy");
+		formattedTextField_2.setToolTipText("dd/mm/yyyy");
 		formattedTextField_2.setBounds(117, 240, 119, 23);
 		frame.getContentPane().add(formattedTextField_2);
 		

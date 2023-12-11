@@ -38,6 +38,10 @@ public class Evento {
 	public double getPreco(){
 		return this.preco;
 	}
+	
+	public ArrayList<Ingresso> getIngressos(){
+		return this.ingressos;
+	}
 
 	public void adicionar(Ingresso ingresso) {
 		ingressos.add(ingresso);
