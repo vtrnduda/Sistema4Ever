@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Evento;
 import regras_negocio.Fachada;
 import javax.swing.JFormattedTextField;
+import javax.swing.UIManager;
 
 
 public class TelaEventos {
@@ -41,7 +42,7 @@ public class TelaEventos {
 	private JLabel label_4;
 	private JButton button;
 	private JButton button_2;
-	private JButton button_3;
+	private JButton btnExibirIngressos;
 	private JLabel label;
 	private JLabel label_1;
 	private JLabel label_2;
@@ -127,10 +128,17 @@ public class TelaEventos {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (table.getSelectedRow() >= 0){
-						String nome = (String) table.getValueAt( table.getSelectedRow(), 0);
+						
+						int idEvento =  (int) table.getValueAt( table.getSelectedRow(), 0);
+						
+						
+						
 						//confirma��o
+						
+						
+						
 						Object[] options = { "Confirmar", "Cancelar" };
-						int escolha = JOptionPane.showOptionDialog(null, "Confirma exclus�o "+nome, "Alerta",
+						int escolha = JOptionPane.showOptionDialog(null, "Confirma exclus�o "+ idEvento, "Alerta",
 								JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[1]);
 						if(escolha == 0) {
 							Fachada.apagarEvento(idEvento);
@@ -146,7 +154,7 @@ public class TelaEventos {
 				}
 			}
 		});
-		button_1.setBounds(389, 275, 160, 23);
+		button_1.setBounds(389, 243, 160, 23);
 		frame.getContentPane().add(button_1);
 
 		label_4 = new JLabel("selecione uma linha");
@@ -174,10 +182,11 @@ public class TelaEventos {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button.setBounds(26, 337, 260, 29);
+		button.setBounds(26, 336, 303, 29);
 		frame.getContentPane().add(button);
 
 		button_2 = new JButton("Voltar");
+		button_2.setForeground(UIManager.getColor("Button.select"));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -201,8 +210,8 @@ public class TelaEventos {
 		button_2.setBounds(389, 343, 160, 23);
 		frame.getContentPane().add(button_2);
 
-		button_3 = new JButton("Exibir Ingresso");
-		button_3.addActionListener(new ActionListener() {
+		btnExibirIngressos = new JButton("Exibir Ingressos");
+		btnExibirIngressos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					if (table.getSelectedRow() >= 0){
@@ -220,10 +229,10 @@ public class TelaEventos {
 				}
 			}
 		});
-		button_3.setToolTipText("");
-		button_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_3.setBounds(389, 309, 160, 23);
-		frame.getContentPane().add(button_3);
+		btnExibirIngressos.setToolTipText("");
+		btnExibirIngressos.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnExibirIngressos.setBounds(389, 278, 160, 23);
+		frame.getContentPane().add(btnExibirIngressos);
 		
 		label = new JLabel("");
 		label.setForeground(Color.RED);
@@ -231,19 +240,19 @@ public class TelaEventos {
 		frame.getContentPane().add(label);
 		
 		label_1 = new JLabel("Data:");
-		label_1.setBounds(26, 226, 46, 14);
+		label_1.setBounds(26, 220, 46, 14);
 		frame.getContentPane().add(label_1);
 		
 		label_2 = new JLabel("Descrição:");
-		label_2.setBounds(26, 275, 63, 14);
+		label_2.setBounds(26, 275, 90, 14);
 		frame.getContentPane().add(label_2);
 		
 		label_3 = new JLabel("Capacidade:");
-		label_3.setBounds(114, 226, 69, 14);
+		label_3.setBounds(117, 220, 79, 14);
 		frame.getContentPane().add(label_3);
 		
 		label_5 = new JLabel("Preço:");
-		label_5.setBounds(205, 226, 46, 14);
+		label_5.setBounds(248, 220, 46, 14);
 		frame.getContentPane().add(label_5);
 		
 		formattedTextField = new JFormattedTextField();
@@ -253,17 +262,17 @@ public class TelaEventos {
 		
 		formattedTextField_1 = new JFormattedTextField();
 		formattedTextField_1.setToolTipText("dd/mm/yy");
-		formattedTextField_1.setBounds(26, 291, 260, 23);
+		formattedTextField_1.setBounds(26, 301, 303, 23);
 		frame.getContentPane().add(formattedTextField_1);
 		
 		formattedTextField_2 = new JFormattedTextField();
 		formattedTextField_2.setToolTipText("dd/mm/yy");
-		formattedTextField_2.setBounds(114, 241, 79, 23);
+		formattedTextField_2.setBounds(117, 240, 119, 23);
 		frame.getContentPane().add(formattedTextField_2);
 		
 		formattedTextField_3 = new JFormattedTextField();
 		formattedTextField_3.setToolTipText("dd/mm/yy");
-		formattedTextField_3.setBounds(207, 241, 79, 23);
+		formattedTextField_3.setBounds(248, 241, 79, 23);
 		frame.getContentPane().add(formattedTextField_3);
 
 
@@ -282,7 +291,7 @@ public class TelaEventos {
 			model.addColumn("Qtd Ingressos");
 			model.addColumn("Arrecadado");
 			model.addColumn("Situação");
-			System.out.println(lista);
+//			System.out.println(lista);
 			for(Evento e : lista)
 				if(e.lotado())
 					model.addRow(new Object[]{  e.getId(), e.getData(), e.getCapacidade(), e.getPreco(), e.quantidadeIngressos(), e.totalArrecadado(), "Lotado!" });
