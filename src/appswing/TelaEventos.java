@@ -49,30 +49,12 @@ public class TelaEventos {
 	private JLabel label_2;
 	private JLabel label_3;
 	private JLabel label_5;
-	private JFormattedTextField formattedTextField;
-	private JFormattedTextField formattedTextField_1;
-	private JFormattedTextField formattedTextField_2;
-	private JFormattedTextField formattedTextField_3;
+	private JFormattedTextField dataField;
+	private JFormattedTextField descricaoField;
+	private JFormattedTextField capacidadeField;
+	private JFormattedTextField precoField;
 
-	/**
-	 * Launch the application.
-	 */
-	//	public static void main(String[] args) {
-	//		EventQueue.invokeLater(new Runnable() {
-	//			public void run() {
-	//				try {
-	//					TelaReuniao window = new TelaReuniao();
-	//					window.frame.setVisible(true);
-	//				} catch (Exception e) {
-	//					e.printStackTrace();
-	//				}
-	//			}
-	//		});
-	//	}
 
-	/**
-	 * Create the application.
-	 */
 	public TelaEventos() {
 		initialize();
 		frame.setVisible(true);
@@ -157,21 +139,31 @@ public class TelaEventos {
 		label_4.setBounds(26, 181, 315, 14);
 		frame.getContentPane().add(label_4);
 
-		// CRIAR EVENTO
+
+		
+		// CRIAR EVENTO 
 		btnCriarEvento = new JButton("Criar Evento");
 		btnCriarEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					
-					//if(textField.getText().isEmpty() ||  textField_1.getText().isEmpty()) {
-						//label.setText("campo vazio");
-						//return;
-					//}
-					//String nome = textField.getText();
-					//String media = textField_1.getText();
-					//Fachada.criarAluno(nome, Double.parseDouble(media));
-					//label.setText("aluno criado");
-					listagem();
+					String data = dataField.getText();
+					String descricao = descricaoField.getText();
+					String capacidadeTexto = capacidadeField.getText();
+					String precoTexto = precoField.getText();
+
+					if (data != null && descricao != null && !capacidadeTexto.isEmpty() && !precoTexto.isEmpty()) {
+					        label.setText("");
+							int capacidade = Integer.parseInt(capacidadeTexto);
+					        double preco = Double.parseDouble(precoTexto);
+					        Fachada.criarEvento(data, descricao, capacidade, preco);
+					        listagem();
+					        
+					} else {
+						label.setText("Todos os campos devem ser preenchidos!");
+					}
+				
+					
 				}
 				catch(Exception ex) {
 					label.setText(ex.getMessage());
@@ -237,7 +229,7 @@ public class TelaEventos {
 		
 		label = new JLabel("");
 		label.setForeground(Color.RED);
-		label.setBounds(195, 194, 332, 14);
+		label.setBounds(248, 194, 279, 14);
 		frame.getContentPane().add(label);
 		
 		label_1 = new JLabel("Data:");
@@ -249,32 +241,32 @@ public class TelaEventos {
 		frame.getContentPane().add(label_2);
 		
 		label_3 = new JLabel("Capacidade:");
-		label_3.setBounds(117, 220, 79, 14);
+		label_3.setBounds(146, 220, 79, 14);
 		frame.getContentPane().add(label_3);
 		
 		label_5 = new JLabel("Preço:");
 		label_5.setBounds(248, 220, 46, 14);
 		frame.getContentPane().add(label_5);
 		
-		formattedTextField = new JFormattedTextField();
-		formattedTextField.setToolTipText("dd/mm/yy");
-		formattedTextField.setBounds(26, 241, 79, 23);
-		frame.getContentPane().add(formattedTextField);
+		dataField = new JFormattedTextField();
+		dataField.setToolTipText("dd/mm/yy");
+		dataField.setBounds(26, 241, 108, 23);
+		frame.getContentPane().add(dataField);
 		
-		formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setToolTipText("dd/mm/yy");
-		formattedTextField_1.setBounds(26, 301, 303, 23);
-		frame.getContentPane().add(formattedTextField_1);
+		descricaoField = new JFormattedTextField();
+		descricaoField.setToolTipText("dd/mm/yy");
+		descricaoField.setBounds(26, 301, 303, 23);
+		frame.getContentPane().add(descricaoField);
 		
-		formattedTextField_2 = new JFormattedTextField();
-		formattedTextField_2.setToolTipText("dd/mm/yyyy");
-		formattedTextField_2.setBounds(117, 240, 119, 23);
-		frame.getContentPane().add(formattedTextField_2);
+		capacidadeField = new JFormattedTextField();
+		capacidadeField.setToolTipText("dd/mm/yyyy");
+		capacidadeField.setBounds(146, 241, 90, 23);
+		frame.getContentPane().add(capacidadeField);
 		
-		formattedTextField_3 = new JFormattedTextField();
-		formattedTextField_3.setToolTipText("dd/mm/yy");
-		formattedTextField_3.setBounds(248, 241, 79, 23);
-		frame.getContentPane().add(formattedTextField_3);
+		precoField = new JFormattedTextField();
+		precoField.setToolTipText("dd/mm/yy");
+		precoField.setBounds(248, 241, 79, 23);
+		frame.getContentPane().add(precoField);
 
 
 
@@ -292,7 +284,7 @@ public class TelaEventos {
 			model.addColumn("Qtd Ingressos");
 			model.addColumn("Arrecadado");
 			model.addColumn("Situação");
-//			System.out.println(lista);
+
 			for(Evento e : lista)
 				if(e.lotado())
 					model.addRow(new Object[]{  e.getId(), e.getData(), e.getCapacidade(), e.getPreco(), e.quantidadeIngressos(), e.totalArrecadado(), "Lotado!" });
@@ -303,7 +295,7 @@ public class TelaEventos {
 			label_4.setText("resultados: "+lista.size()+ " linhas  - selecione uma linha");
 			
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); 		//desabilita
-			//table.getColumnModel().getColumn(1).setMaxWidth(50);	
+			table.getColumnModel().getColumn(0).setMaxWidth(50);	
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS); //habilita
 		}
 		catch(Exception erro){
@@ -311,3 +303,6 @@ public class TelaEventos {
 		}
 	}
 }
+
+// TODO Criar functions p/ o label
+
