@@ -2,8 +2,14 @@ package appswing;
 
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.JFrame;
 import javax.swing.JToolBar;
@@ -12,8 +18,12 @@ import javax.swing.JMenu;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
 import java.awt.Color;
 import javax.swing.UIManager;
+
+import regras_negocio.Fachada;
 
 public class TelaPrincipal {
 
@@ -23,6 +33,7 @@ public class TelaPrincipal {
 	private JMenu menuParticipantes;
 	private JMenu menuIngressos;
 	private JLabel label;
+	private Timer timer;
 
 	/**
 	 * Launch the application.
@@ -52,6 +63,28 @@ public class TelaPrincipal {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				try{
+					//criar objetos no repositorio
+					Fachada.criarEvento("01/02/2024", "Evento festa", 15, 7.0);
+					Fachada.criarEvento("01/02/2024", "Evento festa", 15, 7.0);
+					Fachada.criarEvento("01/02/2024", "Evento festa", 15, 7.0);
+					Fachada.criarEvento("01/02/2024", "Evento festa", 15, 7.0);
+				}
+				catch(Exception e){
+					System.out.println("-->" + e.getMessage());
+				}
+
+			}
+			@Override
+			public void windowClosing(WindowEvent e) {
+				//JOptionPane.showMessageDialog(frame, "at� breve !");
+				timer.stop();
+			}
+			
+		});
 		frame.setTitle("Sistema4Ever");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,6 +105,7 @@ public class TelaPrincipal {
 				TelaEventos tela = new TelaEventos();
 			}
 		});
+		
 		menuBar.add(menuEventos);
 		
 		menuParticipantes = new JMenu("Participantes");
@@ -90,5 +124,22 @@ public class TelaPrincipal {
 		label.setIcon(imagem);
 		
 		frame.getContentPane().add(label);
+		
+		
+		frame.setVisible(true);
+
+		//----------timer----------------
+				timer = new Timer(0, new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss"));
+						frame.setTitle("Sistema4Ever - "+ dt);
+						
+					}
+				});
+				timer.setRepeats(true);
+				timer.setDelay(1000);	//1segundos
+				timer.start();			//inicia o temporizador
+
 	}
 }
