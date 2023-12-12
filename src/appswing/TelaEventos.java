@@ -250,22 +250,22 @@ public class TelaEventos {
 		frame.getContentPane().add(label_5);
 		
 		dataField = new JFormattedTextField();
-		dataField.setToolTipText("dd/mm/yy");
+		dataField.setToolTipText("dd/mm/yyyy");
 		dataField.setBounds(26, 241, 108, 23);
 		frame.getContentPane().add(dataField);
 		
 		descricaoField = new JFormattedTextField();
-		descricaoField.setToolTipText("dd/mm/yy");
+		descricaoField.setToolTipText("");
 		descricaoField.setBounds(26, 301, 303, 23);
 		frame.getContentPane().add(descricaoField);
 		
 		capacidadeField = new JFormattedTextField();
-		capacidadeField.setToolTipText("dd/mm/yyyy");
+		capacidadeField.setToolTipText("");
 		capacidadeField.setBounds(146, 241, 90, 23);
 		frame.getContentPane().add(capacidadeField);
 		
 		precoField = new JFormattedTextField();
-		precoField.setToolTipText("dd/mm/yy");
+		precoField.setToolTipText("");
 		precoField.setBounds(248, 241, 79, 23);
 		frame.getContentPane().add(precoField);
 
