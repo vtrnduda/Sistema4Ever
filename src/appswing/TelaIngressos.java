@@ -148,7 +148,7 @@ public class TelaIngressos {
 					String cpf = cpfField.getText();
 					String telefone = telefoneField.getText();
 					
-
+					
 					if (!idTexto.isEmpty() && !cpf.isEmpty() && !telefone.isEmpty()) {
 					        label.setText("");
 							int id = Integer.parseInt(idTexto);
@@ -187,7 +187,7 @@ public class TelaIngressos {
 		
 		label = new JLabel("");
 		label.setForeground(Color.RED);
-		label.setBounds(248, 194, 279, 14);
+		label.setBounds(271, 194, 256, 14);
 		frame.getContentPane().add(label);
 		
 		lblIdDoEvento = new JLabel("Id do Evento:");
@@ -233,7 +233,7 @@ public class TelaIngressos {
 			
 			
 			for(Ingresso i : lista)	
-				model.addRow(new Object[]{i.getCodigo(), i.getTelefone(), i.calcularPreco(), i.getEvento().getPreco(), i.getParticipante().calcularIdade()});
+				model.addRow(new Object[]{i.getCodigo(), i.getTelefone(), i.calcularPreco(), i.getEvento().getPreco(), i.getEvento().getData(),i.getParticipante().calcularIdade()});
 		
 			table.setModel(model);
 			label_4.setText("resultados: "+lista.size()+ " linhas  - selecione uma linha");

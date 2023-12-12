@@ -1,5 +1,4 @@
 package appswing;
-
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -13,9 +12,9 @@ import java.time.format.DateTimeFormatter;
 
 import javax.swing.JFrame;
 import javax.swing.JToolBar;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
