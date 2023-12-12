@@ -46,7 +46,7 @@ public class Repositorio {
 	
 	public Participante localizarParticipante (String cpf) {
 		for (Participante p : participantes) {
-			if (p.getCpf() == cpf) {
+			if (p.getCpf().equals(cpf)) {
 				return p;			
 			}
 		}
@@ -56,7 +56,7 @@ public class Repositorio {
 	public Ingresso localizarIngresso(String codigo) {
 		
 		for (Ingresso i : ingressos){
-			if(i.getCodigo() == codigo){
+			if(i.getCodigo().equals(codigo)){
 				return i;
 			}
 		}
@@ -87,9 +87,9 @@ public class Repositorio {
 		// carregar para o repositorio os objetos salvos nos arquivos csv
 		try {
 			//caso os arquivos nao existam, serao criados vazios
-			File f1 = new File( new File(".\\eventos.csv").getCanonicalPath() ) ; 
-			File f2 = new File( new File(".\\participantes.csv").getCanonicalPath() ) ; 
-			File f3 = new File( new File(".\\ingressos.csv").getCanonicalPath() ) ; 
+			File f1 = new File( new File("./eventos.csv").getCanonicalPath() ) ; 
+			File f2 = new File( new File("./participantes.csv").getCanonicalPath() ) ; 
+			File f3 = new File( new File("./ingressos.csv").getCanonicalPath() ) ; 
 			if (!f1.exists() || !f2.exists() || !f3.exists()) {
 				//System.out.println("criando arquivo .csv vazio");
 				FileWriter arquivo1 = new FileWriter(f1); arquivo1.close();
@@ -109,7 +109,7 @@ public class Repositorio {
 
 		try	{
 			String data, descricao, id, capacidade, preco ;
-			File f = new File( new File(".\\eventos.csv").getCanonicalPath() )  ;
+			File f = new File( new File("./eventos.csv").getCanonicalPath() )  ;
 			Scanner arquivo1 = new Scanner(f);	 //  pasta do projeto
 			while(arquivo1.hasNextLine()) 	{
 				linha = arquivo1.nextLine().trim();		
@@ -132,7 +132,7 @@ public class Repositorio {
 
 		try	{
 			String cpf, nascimento, empresa, listaId;
-			File f = new File( new File(".\\participantes.csv").getCanonicalPath())  ;
+			File f = new File( new File("./participantes.csv").getCanonicalPath())  ;
 			Scanner arquivo2 = new Scanner(f);	 //  pasta do projeto
 			while(arquivo2.hasNextLine()) 	{
 				linha = arquivo2.nextLine().trim();	
@@ -161,7 +161,7 @@ public class Repositorio {
 			String codigo, telefone,cpf;
 			int id;
 			Ingresso ingresso;
-			File f = new File( new File(".\\ingressos.csv").getCanonicalPath())  ;
+			File f = new File( new File("./ingressos.csv").getCanonicalPath())  ;
 			Scanner arquivo3 = new Scanner(f);	 //  pasta do projeto
 			while(arquivo3.hasNextLine()) 	{
 				linha = arquivo3.nextLine().trim();	
@@ -191,7 +191,7 @@ public class Repositorio {
 	public void	salvarObjetos()  {
 		//gravar nos arquivos csv os objetos que estão no repositório
 		try	{
-			File f = new File( new File(".\\eventos.csv").getCanonicalPath())  ;
+			File f = new File( new File("./eventos.csv").getCanonicalPath())  ;
 			FileWriter arquivo1 = new FileWriter(f); 
 			for(Evento e : eventos) 	{
 				arquivo1.write(e.getId()+";"+e.getData()+";"+e.getDescricao()+";"+e.getCapacidade()+";"+e.getPreco()+"\n");	
@@ -203,7 +203,7 @@ public class Repositorio {
 		}
 
 		try	{
-			File f = new File( new File(".\\participantes.csv").getCanonicalPath())  ;
+			File f = new File( new File("./participantes.csv").getCanonicalPath())  ;
 			FileWriter arquivo2 = new FileWriter(f) ; 
 			for(Participante p : participantes) {
 				if(p instanceof Convidado )
@@ -218,7 +218,7 @@ public class Repositorio {
 			throw new RuntimeException("problema na criação do arquivo  participantes "+e.getMessage());
 		}
 		try	{
-			File f = new File( new File(".\\ingressos.csv").getCanonicalPath())  ;
+			File f = new File( new File("./ingressos.csv").getCanonicalPath())  ;
 			FileWriter arquivo3 = new FileWriter(f) ; 
 			for(Ingresso i : this.getIngressos()) {
 					arquivo3.write(i.getCodigo() +";" + i.getTelefone()+"\n");	
@@ -232,7 +232,4 @@ public class Repositorio {
 
 	}
 	
-	
-	
-
 }
