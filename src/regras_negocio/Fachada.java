@@ -26,15 +26,15 @@ public class Fachada {
 			throw new Exception("Não é possível criar um evento com preço negativo.");
 		}
 
-		else if (data == null || data.isEmpty() || descricao == null || descricao.isEmpty()){
+		if (data == null || data.isEmpty() || descricao == null || descricao.isEmpty()){
 			throw new Exception("Não é possível criar evento sem data ou descrição.");
 		}
 
-		else if (capacidade < 2){
+		if (capacidade < 2){
 			throw new Exception("A capacidade do evento deve ser de no mínimo 2");
 		}
 		
-		else if (data_atual.isAfter(data_evento)) {
+		if (data_atual.isAfter(data_evento)) {
 			throw new Exception("Não é possível criar evento com data que já passou.");
 		}
 
