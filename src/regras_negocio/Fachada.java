@@ -18,17 +18,24 @@ public class Fachada {
 	private Fachada() {};
 
 	public static void criarEvento(String data, String descricao, int capacidade, double preco) throws Exception {
+		
+		LocalDate data_evento = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		LocalDate data_atual = LocalDate.now();
 
 		if (preco < 0){
 			throw new Exception("Não é possível criar um evento com preço negativo.");
 		}
 
-		if (data == null || data.isEmpty() || descricao == null || descricao.isEmpty()){
+		else if (data == null || data.isEmpty() || descricao == null || descricao.isEmpty()){
 			throw new Exception("Não é possível criar evento sem data ou descrição.");
 		}
 
-		if (capacidade < 2){
+		else if (capacidade < 2){
 			throw new Exception("A capacidade do evento deve ser de no mínimo 2");
+		}
+		
+		else if (data_atual.isAfter(data_evento)) {
+			throw new Exception("Não é possível criar evento com data que já passou.");
 		}
 
 		while(true){
