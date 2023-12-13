@@ -35,6 +35,7 @@ import modelo.Participante;
 import regras_negocio.Fachada;
 import javax.swing.JFormattedTextField;
 import javax.swing.UIManager;
+import javax.swing.SwingConstants;
 
 
 public class TelaParticipantes {
@@ -77,7 +78,7 @@ public class TelaParticipantes {
 		frame.getContentPane().setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 11, 501, 172);
+		scrollPane.setBounds(26, 11, 509, 172);
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable() {
@@ -132,7 +133,7 @@ public class TelaParticipantes {
 				}
 			}
 		});
-		btnApagarParticipante.setBounds(389, 243, 160, 23);
+		btnApagarParticipante.setBounds(375, 240, 160, 23);
 		frame.getContentPane().add(btnApagarParticipante);
 
 		label_4 = new JLabel("selecione uma linha");
@@ -178,7 +179,7 @@ public class TelaParticipantes {
 
 		// VOLTAR
 		btnVoltar = new JButton("Voltar");
-		btnVoltar.setForeground(UIManager.getColor("Button.select"));
+		btnVoltar.setForeground(new Color(255, 0, 0));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -187,7 +188,7 @@ public class TelaParticipantes {
 		});
 		btnVoltar.setToolTipText("");
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVoltar.setBounds(389, 343, 160, 23);
+		btnVoltar.setBounds(375, 342, 160, 23);
 		frame.getContentPane().add(btnVoltar);
 
 		// EXIBIR INGRESSOS
@@ -226,12 +227,13 @@ public class TelaParticipantes {
 		});
 		btnExibirIngressos.setToolTipText("");
 		btnExibirIngressos.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnExibirIngressos.setBounds(389, 278, 160, 23);
+		btnExibirIngressos.setBounds(375, 274, 160, 23);
 		frame.getContentPane().add(btnExibirIngressos);
 		
 		label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.RED);
-		label.setBounds(248, 194, 279, 14);
+		label.setBounds(105, 199, 350, 14);
 		frame.getContentPane().add(label);
 		
 		lblCpf = new JLabel("CPF: ");

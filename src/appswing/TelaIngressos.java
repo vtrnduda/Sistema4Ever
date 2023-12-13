@@ -32,6 +32,7 @@ import modelo.Ingresso;
 import regras_negocio.Fachada;
 import javax.swing.JFormattedTextField;
 import javax.swing.UIManager;
+import javax.swing.SwingConstants;
 
 
 public class TelaIngressos {
@@ -73,7 +74,7 @@ public class TelaIngressos {
 		frame.getContentPane().setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 11, 501, 172);
+		scrollPane.setBounds(26, 11, 509, 172);
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable() {
@@ -129,7 +130,7 @@ public class TelaIngressos {
 				}
 			}
 		});
-		btnApagarIngresso.setBounds(389, 243, 160, 23);
+		btnApagarIngresso.setBounds(375, 240, 160, 23);
 		frame.getContentPane().add(btnApagarIngresso);
 
 		label_4 = new JLabel("selecione uma linha");
@@ -173,7 +174,7 @@ public class TelaIngressos {
 
 		// VOLTAR
 		btnVoltar = new JButton("Voltar");
-		btnVoltar.setForeground(UIManager.getColor("Button.select"));
+		btnVoltar.setForeground(new Color(255, 0, 0));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -182,12 +183,13 @@ public class TelaIngressos {
 		});
 		btnVoltar.setToolTipText("");
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVoltar.setBounds(389, 343, 160, 23);
+		btnVoltar.setBounds(375, 342, 160, 23);
 		frame.getContentPane().add(btnVoltar);
 		
 		label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.RED);
-		label.setBounds(271, 194, 256, 14);
+		label.setBounds(105, 199, 350, 14);
 		frame.getContentPane().add(label);
 		
 		lblIdDoEvento = new JLabel("Id do Evento:");
