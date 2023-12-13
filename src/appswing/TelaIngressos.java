@@ -74,7 +74,7 @@ public class TelaIngressos {
 		frame.getContentPane().setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 11, 501, 172);
+		scrollPane.setBounds(26, 11, 523, 172);
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable() {
