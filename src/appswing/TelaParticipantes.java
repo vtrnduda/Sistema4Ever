@@ -78,7 +78,7 @@ public class TelaParticipantes {
 		frame.getContentPane().setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 11, 523, 172);
+		scrollPane.setBounds(26, 11, 510, 172);
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable() {
@@ -133,7 +133,7 @@ public class TelaParticipantes {
 				}
 			}
 		});
-		btnApagarParticipante.setBounds(389, 251, 160, 23);
+		btnApagarParticipante.setBounds(376, 243, 160, 23);
 		frame.getContentPane().add(btnApagarParticipante);
 
 		label_4 = new JLabel("selecione uma linha");
@@ -174,12 +174,12 @@ public class TelaParticipantes {
 			}
 		});
 		btnCriarParticipante.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCriarParticipante.setBounds(26, 346, 303, 29);
+		btnCriarParticipante.setBounds(26, 352, 303, 29);
 		frame.getContentPane().add(btnCriarParticipante);
 
 		// VOLTAR
 		btnVoltar = new JButton("Voltar");
-		btnVoltar.setForeground(UIManager.getColor("Button.select"));
+		btnVoltar.setForeground(new Color(255, 0, 0));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -188,7 +188,7 @@ public class TelaParticipantes {
 		});
 		btnVoltar.setToolTipText("");
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVoltar.setBounds(389, 349, 160, 23);
+		btnVoltar.setBounds(376, 358, 160, 23);
 		frame.getContentPane().add(btnVoltar);
 
 		// EXIBIR INGRESSOS
@@ -227,14 +227,15 @@ public class TelaParticipantes {
 		});
 		btnExibirIngressos.setToolTipText("");
 		btnExibirIngressos.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnExibirIngressos.setBounds(389, 286, 160, 23);
+		btnExibirIngressos.setBounds(376, 278, 160, 23);
 		frame.getContentPane().add(btnExibirIngressos);
 		
 		label = new JLabel("");
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Tahoma", Font.BOLD, 12));
 //		label.setHorizontalAlignment(SwingConstants.TRAILING);
 		label.setForeground(Color.RED);
-		label.setBounds(26, 204, 501, 14);
+		label.setBounds(26, 204, 501, 15);
 		frame.getContentPane().add(label);
 		
 		lblCpf = new JLabel("CPF: ");
@@ -250,16 +251,16 @@ public class TelaParticipantes {
 		frame.getContentPane().add(lblDataDeNascimento);
 		
 		cpfField = new JFormattedTextField();
-		cpfField.setBounds(26, 251, 145, 23);
+		cpfField.setBounds(26, 251, 145, 24);
 		frame.getContentPane().add(cpfField);
 		
 		empresaField = new JFormattedTextField();
-		empresaField.setBounds(26, 311, 303, 23);
+		empresaField.setBounds(26, 311, 303, 24);
 		frame.getContentPane().add(empresaField);
 		
 		dataNascField = new JFormattedTextField();
 		dataNascField.setToolTipText("dd/mm/yyyy");
-		dataNascField.setBounds(184, 251, 145, 23);
+		dataNascField.setBounds(184, 251, 145, 24);
 		frame.getContentPane().add(dataNascField);
 
 
