@@ -74,7 +74,7 @@ public class TelaIngressos {
 		frame.getContentPane().setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 11, 509, 172);
+		scrollPane.setBounds(26, 11, 501, 172);
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable() {
@@ -130,7 +130,7 @@ public class TelaIngressos {
 				}
 			}
 		});
-		btnApagarIngresso.setBounds(375, 240, 160, 23);
+		btnApagarIngresso.setBounds(389, 259, 160, 23);
 		frame.getContentPane().add(btnApagarIngresso);
 
 		label_4 = new JLabel("selecione uma linha");
@@ -169,12 +169,12 @@ public class TelaIngressos {
 			}
 		});
 		btnCriarIngresso.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCriarIngresso.setBounds(26, 336, 303, 29);
+		btnCriarIngresso.setBounds(26, 352, 303, 29);
 		frame.getContentPane().add(btnCriarIngresso);
 
 		// VOLTAR
 		btnVoltar = new JButton("Voltar");
-		btnVoltar.setForeground(new Color(255, 0, 0));
+		btnVoltar.setForeground(UIManager.getColor("Button.select"));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -183,38 +183,37 @@ public class TelaIngressos {
 		});
 		btnVoltar.setToolTipText("");
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVoltar.setBounds(375, 342, 160, 23);
+		btnVoltar.setBounds(389, 355, 160, 23);
 		frame.getContentPane().add(btnVoltar);
 		
 		label = new JLabel("");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.RED);
-		label.setBounds(105, 199, 350, 14);
+		label.setBounds(36, 204, 491, 14);
 		frame.getContentPane().add(label);
 		
 		lblIdDoEvento = new JLabel("Id do Evento:");
-		lblIdDoEvento.setBounds(26, 220, 90, 14);
+		lblIdDoEvento.setBounds(26, 236, 90, 14);
 		frame.getContentPane().add(lblIdDoEvento);
 		
 		lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(26, 275, 90, 14);
+		lblTelefone.setBounds(26, 291, 90, 14);
 		frame.getContentPane().add(lblTelefone);
 		
 		lblCpf = new JLabel("CPF:");
-		lblCpf.setBounds(128, 220, 79, 14);
+		lblCpf.setBounds(128, 236, 79, 14);
 		frame.getContentPane().add(lblCpf);
 		
 		idField = new JFormattedTextField();
-		idField.setBounds(26, 241, 90, 23);
+		idField.setBounds(26, 257, 90, 23);
 		frame.getContentPane().add(idField);
 		
 		telefoneField = new JFormattedTextField();
 
-		telefoneField.setBounds(26, 301, 303, 23);
+		telefoneField.setBounds(26, 317, 303, 23);
 		frame.getContentPane().add(telefoneField);
 		
 		cpfField = new JFormattedTextField();
-		cpfField.setBounds(128, 241, 201, 23);
+		cpfField.setBounds(128, 257, 201, 23);
 		frame.getContentPane().add(cpfField);
 
 

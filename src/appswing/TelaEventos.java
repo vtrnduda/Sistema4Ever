@@ -78,7 +78,7 @@ public class TelaEventos {
 		frame.getContentPane().setLayout(null);
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(26, 11, 509, 172);
+		scrollPane.setBounds(26, 11, 501, 172);
 		frame.getContentPane().add(scrollPane);
 
 		table = new JTable() {
@@ -133,7 +133,7 @@ public class TelaEventos {
 				}
 			}
 		});
-		btnApagarEvento.setBounds(375, 240, 160, 23);
+		btnApagarEvento.setBounds(389, 243, 160, 23);
 		frame.getContentPane().add(btnApagarEvento);
 
 		label_4 = new JLabel("selecione uma linha");
@@ -172,12 +172,12 @@ public class TelaEventos {
 			}
 		});
 		btnCriarEvento.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCriarEvento.setBounds(26, 336, 303, 29);
+		btnCriarEvento.setBounds(26, 359, 303, 29);
 		frame.getContentPane().add(btnCriarEvento);
 
 		// VOLTAR
 		btnVoltar = new JButton("Voltar");
-		btnVoltar.setForeground(new Color(255, 0, 0));
+		btnVoltar.setForeground(UIManager.getColor("Button.select"));
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
@@ -186,7 +186,7 @@ public class TelaEventos {
 		});
 		btnVoltar.setToolTipText("");
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVoltar.setBounds(375, 342, 160, 23);
+		btnVoltar.setBounds(389, 362, 160, 23);
 		frame.getContentPane().add(btnVoltar);
 
 		// EXIBIR INGRESSOS
@@ -225,49 +225,48 @@ public class TelaEventos {
 		});
 		btnExibirIngressos.setToolTipText("");
 		btnExibirIngressos.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnExibirIngressos.setBounds(375, 274, 160, 23);
+		btnExibirIngressos.setBounds(389, 278, 160, 23);
 		frame.getContentPane().add(btnExibirIngressos);
 		
 		label = new JLabel("");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setForeground(Color.RED);
-		label.setBounds(105, 199, 350, 14);
+		label.setBounds(36, 205, 491, 14);
 		frame.getContentPane().add(label);
 		
 		label_1 = new JLabel("Data:");
-		label_1.setBounds(26, 220, 46, 14);
+		label_1.setBounds(26, 243, 46, 14);
 		frame.getContentPane().add(label_1);
 		
 		label_2 = new JLabel("Descrição:");
-		label_2.setBounds(26, 275, 90, 14);
+		label_2.setBounds(26, 298, 90, 14);
 		frame.getContentPane().add(label_2);
 		
 		label_3 = new JLabel("Capacidade:");
-		label_3.setBounds(146, 220, 79, 14);
+		label_3.setBounds(146, 243, 79, 14);
 		frame.getContentPane().add(label_3);
 		
 		label_5 = new JLabel("Preço:");
-		label_5.setBounds(248, 220, 46, 14);
+		label_5.setBounds(248, 243, 46, 14);
 		frame.getContentPane().add(label_5);
 		
 		dataField = new JFormattedTextField();
 		dataField.setToolTipText("dd/mm/yyyy");
-		dataField.setBounds(26, 241, 108, 23);
+		dataField.setBounds(26, 264, 108, 23);
 		frame.getContentPane().add(dataField);
 		
 		descricaoField = new JFormattedTextField();
 		descricaoField.setToolTipText("");
-		descricaoField.setBounds(26, 301, 303, 23);
+		descricaoField.setBounds(26, 324, 303, 23);
 		frame.getContentPane().add(descricaoField);
 		
 		capacidadeField = new JFormattedTextField();
 		capacidadeField.setToolTipText("");
-		capacidadeField.setBounds(146, 241, 90, 23);
+		capacidadeField.setBounds(146, 264, 90, 23);
 		frame.getContentPane().add(capacidadeField);
 		
 		precoField = new JFormattedTextField();
 		precoField.setToolTipText("");
-		precoField.setBounds(248, 241, 79, 23);
+		precoField.setBounds(248, 264, 79, 23);
 		frame.getContentPane().add(precoField);
 
 
